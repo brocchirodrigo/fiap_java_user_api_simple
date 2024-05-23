@@ -2,6 +2,7 @@ package br.com.fiap.api.auth_users.controller;
 
 import br.com.fiap.api.auth_users.dto.UserDTO;
 import br.com.fiap.api.auth_users.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,7 +37,7 @@ public class UserController {
   }
 
   @PostMapping
-  public ResponseEntity<UserDTO> save(@RequestBody UserDTO userDTO) {
+  public ResponseEntity<UserDTO> save(@Valid @RequestBody UserDTO userDTO) {
     UserDTO savedUser = userService.save(userDTO);
     return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
   }
